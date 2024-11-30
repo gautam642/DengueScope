@@ -1,8 +1,6 @@
 # 🌍 **DengueScope: A Machine Learning-Based Dengue Prediction System**  
 
 [![Python](https://img.shields.io/badge/python-3.x-blue.svg)](https://www.python.org/)  
-[![CatBoost](https://img.shields.io/badge/CatBoost-1.0-green)](https://catboost.ai/)  
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.x-orange.svg)](https://www.tensorflow.org/)
 
 DengueScope is a machine learning-based system designed to predict dengue outbreaks using a diverse set of geospatial, climatic, socio-economic, and human mobility data. The project integrates novel data sources such as Google Trends and Twitter geotagged data to enhance dengue prediction accuracy across Brazilian cities.
 
