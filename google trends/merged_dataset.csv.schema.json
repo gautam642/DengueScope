@@ -1,0 +1,212 @@
+{
+  "fields": [
+    {
+      "name": "Year",
+      "type": "year",
+      "format": "default"
+    },
+    {
+      "name": "dep_id",
+      "type": "integer",
+      "format": "default"
+    },
+    {
+      "name": "t_fundc_ocup18m",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "t_medioc_ocup18m",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PopTotal_Urban_UF",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PopTotal_Rural_UF",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "total_precipitation_d",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "surface_pressure_d",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "area_km2",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "humidity_d",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "temperature_2m_d",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "min_temperature_2m_d",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "CNN_all",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "CNN_0-19",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "Month",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "cases20_99",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "cases0_19",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "RandEffects1",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "RandEffects2",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "RandEffects3",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA0-Climatic",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA1-Climatic",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA2-Climatic",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA3-Climatic",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA0-Geo",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA1-Geo",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA2-Geo",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA3-Geo",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA4-Geo",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA5-Geo",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA0-Socio",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA1-Socio",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA2-Socio",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA3-Socio",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA4-Socio",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "PCA5-Socio",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "mosquito_interest",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "sintomas_dengue_interest",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "dengue_interest",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "DengRate_all",
+      "type": "number",
+      "format": "default"
+    },
+    {
+      "name": "DengRate_019",
+      "type": "number",
+      "format": "default"
+    }
+  ],
+  "missingValues": [
+    ""
+  ]
+}

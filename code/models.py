@@ -371,7 +371,6 @@ class CatBoostNet:
         self.max_depth = CATBOOST_SETTINGS['MAX DEPTH']
         self.eval_metric = CATBOOST_SETTINGS['EVALUATION METRIC']
         self.early_stopping_rounds = CATBOOST_SETTINGS['EARLY STOPPING']
-        
         self.model = self.__build()
 
     def __build(self):

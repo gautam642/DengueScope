@@ -1,0 +1,382 @@
+{
+  "columns": [
+    {
+      "minWidth": 40,
+      "download": false,
+      "formatter": "rowSelection",
+      "titleFormatter": "rowSelection",
+      "resizable": true,
+      "headerSort": false,
+      "width": 51
+    },
+    {
+      "field": "Year",
+      "title": "Year",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "string",
+      "headerSort": true,
+      "width": 82
+    },
+    {
+      "field": "dep_id",
+      "title": "dep_id",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 97
+    },
+    {
+      "field": "t_fundc_ocup18m",
+      "title": "t_fundc_ocup18m",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 165
+    },
+    {
+      "field": "t_medioc_ocup18m",
+      "title": "t_medioc_ocup18m",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 176
+    },
+    {
+      "field": "PopTotal_Urban_UF",
+      "title": "PopTotal_Urban_UF",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 175
+    },
+    {
+      "field": "PopTotal_Rural_UF",
+      "title": "PopTotal_Rural_UF",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 169
+    },
+    {
+      "field": "total_precipitation_d",
+      "title": "total_precipitation_d",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 182
+    },
+    {
+      "field": "surface_pressure_d",
+      "title": "surface_pressure_d",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 172
+    },
+    {
+      "field": "area_km2",
+      "title": "area_km2",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "humidity_d",
+      "title": "humidity_d",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "temperature_2m_d",
+      "title": "temperature_2m_d",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 172
+    },
+    {
+      "field": "min_temperature_2m_d",
+      "title": "min_temperature_2m_d",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 201
+    },
+    {
+      "field": "CNN_all",
+      "title": "CNN_all",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "CNN_0-19",
+      "title": "CNN_0-19",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "Month",
+      "title": "Month",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "cases20_99",
+      "title": "cases20_99",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 171
+    },
+    {
+      "field": "cases0_19",
+      "title": "cases0_19",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 179
+    },
+    {
+      "field": "RandEffects1",
+      "title": "RandEffects1",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "RandEffects2",
+      "title": "RandEffects2",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "RandEffects3",
+      "title": "RandEffects3",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 179
+    },
+    {
+      "field": "PCA0-Climatic",
+      "title": "PCA0-Climatic",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 144
+    },
+    {
+      "field": "PCA1-Climatic",
+      "title": "PCA1-Climatic",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 144
+    },
+    {
+      "field": "PCA2-Climatic",
+      "title": "PCA2-Climatic",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 144
+    },
+    {
+      "field": "PCA3-Climatic",
+      "title": "PCA3-Climatic",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 144
+    },
+    {
+      "field": "PCA0-Geo",
+      "title": "PCA0-Geo",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA1-Geo",
+      "title": "PCA1-Geo",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA2-Geo",
+      "title": "PCA2-Geo",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA3-Geo",
+      "title": "PCA3-Geo",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA4-Geo",
+      "title": "PCA4-Geo",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA5-Geo",
+      "title": "PCA5-Geo",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA0-Socio",
+      "title": "PCA0-Socio",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA1-Socio",
+      "title": "PCA1-Socio",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA2-Socio",
+      "title": "PCA2-Socio",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA3-Socio",
+      "title": "PCA3-Socio",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA4-Socio",
+      "title": "PCA4-Socio",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "PCA5-Socio",
+      "title": "PCA5-Socio",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "mosquito_interest",
+      "title": "mosquito_interest",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 166
+    },
+    {
+      "field": "sintomas_dengue_interest",
+      "title": "sintomas_dengue_interest",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 216
+    },
+    {
+      "field": "dengue_interest",
+      "title": "dengue_interest",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 155
+    },
+    {
+      "field": "DengRate_all",
+      "title": "DengRate_all",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 141
+    },
+    {
+      "field": "DengRate_019",
+      "title": "DengRate_019",
+      "minWidth": 40,
+      "resizable": true,
+      "sorter": "number",
+      "headerSort": true,
+      "width": 145
+    }
+  ]
+}

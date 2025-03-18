@@ -20,7 +20,7 @@ class datasetHandler:
         x_train = np.zeros((len_series*len(departments), t_window_size, self.training.shape[1]))
         y_train = np.zeros((len_series*len(departments), 2*t_prediction))
         print('X Training shape', x_train.shape)
-        print('Y Training shape', x_train.shape)
+        print('Y Training shape', y_train.shape)
 
         # Fill the training set
         counter = 0
