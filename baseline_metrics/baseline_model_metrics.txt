@@ -1,0 +1,88 @@
+all baseline models.:
+1. with added lag features, rollingavg+lag, ewma+lag
+		Results for Lagged_DengRate_all:
+		RandomForest: RMSE=0.0211, R²=0.9189, MAE=0.0043
+		GradientBoosting: RMSE=0.0190, R²=0.9340, MAE=0.0053
+		SARIMAX: RMSE=0.0291, R²=0.8455, MAE=0.0161
+		
+		Results for Lagged_DengRate_019:
+		RandomForest: RMSE=0.0244, R²=0.9084, MAE=0.0044
+		GradientBoosting: RMSE=0.0196, R²=0.9410, MAE=0.0054
+		SARIMAX: RMSE=0.0493, R²=0.6260, MAE=0.0369
+2. with added lag features only; NO rollingavg+lag, ewma+lag
+		Results for lagged_noewma_norollavg_DengRate_all:
+		RandomForest: RMSE=0.0212, R²=0.9175, MAE=0.0043
+		GradientBoosting: RMSE=0.0194, R²=0.9311, MAE=0.0054
+		SARIMAX: RMSE=0.0426, R²=0.6682, MAE=0.0318
+		
+		Results for lagged_noewma_norollavg_DengRate_019:
+		RandomForest: RMSE=0.0244, R²=0.9084, MAE=0.0043
+		GradientBoosting: RMSE=0.0198, R²=0.9396, MAE=0.0055
+		SARIMAX: RMSE=0.0467, R²=0.6643, MAE=0.0345
+3. with added lag features rollingavg+lag, ewma+lag and orignial features removed for which new versions were added
+		Results for lagged_nooriginal_DengRate_all:
+		RandomForest: RMSE=0.0236, R²=0.8980, MAE=0.0046
+		GradientBoosting: RMSE=0.0222, R²=0.9097, MAE=0.0056
+		SARIMAX: RMSE=0.0758, R²=-0.0501, MAE=0.0626
+		
+		Results for lagged_nooriginal_DengRate_019:
+		RandomForest: RMSE=0.0254, R²=0.9009, MAE=0.0044
+		GradientBoosting: RMSE=0.0223, R²=0.9232, MAE=0.0056
+		SARIMAX: RMSE=0.0901, R²=-0.2494, MAE=0.0752
+
+4. with added lag features only; NO rollingavg+lag, ewma+lag and orignial features removed for which new versions were added
+		Results for lagged_noewma_norollavg_nooriginal_DengRate_all:
+		RandomForest: RMSE=0.0236, R²=0.8985, MAE=0.0045
+		GradientBoosting: RMSE=0.0217, R²=0.9142, MAE=0.0055
+		SARIMAX: RMSE=0.1353, R²=-2.3429, MAE=0.1157
+		
+		Results for lagged_noewma_norollavg_nooriginal_DengRate_019:
+		RandomForest: RMSE=0.0254, R²=0.9010, MAE=0.0044
+		GradientBoosting: RMSE=0.0216, R²=0.9283, MAE=0.0054
+		SARIMAX: RMSE=0.1523, R²=-2.5699, MAE=0.1307
+5. original no lags
+		Results for Original_DengRate_all:
+		RandomForest: RMSE=0.0254, R²=0.8652, MAE=0.0053
+		GradientBoosting: RMSE=0.0203, R²=0.9134, MAE=0.0069
+		SARIMAX: RMSE=0.0375, R²=0.7049, MAE=0.0207
+		
+		Results for Original_DengRate_019:
+		RandomForest: RMSE=0.0250, R²=0.8860, MAE=0.0052
+		GradientBoosting: RMSE=0.0185, R²=0.9373, MAE=0.0065
+		SARIMAX: RMSE=0.0378, R²=0.7395, MAE=0.0204
+	
+6. original no lags no google trends terms
+		Results for unlagged_nogt_DengRate_all:
+		RandomForest: RMSE=0.0224, R²=0.8947, MAE=0.0046
+		GradientBoosting: RMSE=0.0190, R²=0.9245, MAE=0.0061
+		SARIMAX: RMSE=0.0364, R²=0.7229, MAE=0.0196
+		
+		Results for unlagged_nogt_DengRate_019:
+		RandomForest: RMSE=0.0249, R²=0.8872, MAE=0.0047
+		GradientBoosting: RMSE=0.0176, R²=0.9433, MAE=0.0059
+		SARIMAX: RMSE=0.0379, R²=0.7381, MAE=0.0202
+7. original with only google terms lagged
+		Results for lagged_gtonly_DengRate_all:
+		RandomForest: RMSE=0.0309, R²=0.8726, MAE=0.0065
+		GradientBoosting: RMSE=0.0231, R²=0.9290, MAE=0.0071
+		SARIMAX: RMSE=0.0483, R²=0.6887, MAE=0.0258
+		
+		Results for lagged_gtonly_DengRate_019:
+		RandomForest: RMSE=0.0263, R²=0.9186, MAE=0.0059
+		GradientBoosting: RMSE=0.0199, R²=0.9536, MAE=0.0069
+		SARIMAX: RMSE=0.1117, R²=-0.4658, MAE=0.0948
+
+8. with added lag features, rollingavg+lag, ewma+lag, mosquito_interest dropped
+		Results for merged_dataset_lagged_nomosquito_DengRate_all:
+		RandomForest: RMSE=0.0212, R²=0.9178, MAE=0.0043
+		GradientBoosting: RMSE=0.0192, R²=0.9327, MAE=0.0053
+		SARIMAX: RMSE=0.0309, R²=0.8250, MAE=0.0184
+		
+		Results for merged_dataset_lagged_nomosquito_DengRate_019:
+		RandomForest: RMSE=0.0245, R²=0.9080, MAE=0.0044
+		GradientBoosting: RMSE=0.0198, R²=0.9396, MAE=0.0056
+		SARIMAX: RMSE=0.0338, R²=0.8241, MAE=0.0204
+
+lagged_noewma_norollavg_DengRate_all
+Lagged_DengRate_all
+etc.

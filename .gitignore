@@ -21,7 +21,7 @@ var/
 
 # Jupyter
 .ipynb_checkpoints
-
+.virtual_documents/
 
 # Environment
 venv/

@@ -2,116 +2,214 @@
 
 [![Python](https://img.shields.io/badge/python-3.x-blue.svg)](https://www.python.org/)  
 
-DengueScope is a machine learning-based system designed to predict dengue outbreaks using a diverse set of geospatial, climatic, socio-economic, and human mobility data. The project integrates novel data sources such as Google Trends and Twitter geotagged data to enhance dengue prediction accuracy across Brazilian cities.
+DengueScope is a machine learning-based system designed to predict dengue outbreaks using a diverse set of geospatial, climatic, socio-economic, and human mobility data. The project integrates novel data sources such as Google Trends alongside models such as TCN, TFT, CatBoost, LSTM, BlendeStackEnsemble  to enhance dengue prediction accuracy across Brazilian cities.
 
 ## 🚀 **Project Overview**
 
-Dengue is a major public health concern, especially in tropical regions like Brazil. DengueScope aims to predict dengue outbreaks by leveraging:
+Dengue is a major public health concern, especially in tropical regions like Brazil. DengueScope aims to predict dengue outbreaks with maximum accuracy by leveraging:
 
 - **Geospatial Data**: Population density, urbanization, and spatial spread of dengue cases.
 - **Climatic Data**: Temperature, humidity, precipitation, and other environmental factors.
 - **Socio-economic Data**: Income levels, healthcare access, and population vulnerability.
-- **Human Mobility Data**: Twitter geotagged data and Google Trends for human movement patterns and public awareness.
+- **Google Searches**: Google Trends data
+
+## 📚 **Project Workflow**
+
+### 1. **Data Preprocessing and Initial Modeling**
+- Initial data processing and feature engineering in `modelling-brazil-new3.ipynb`
+- Data augmentation and preprocessing steps
+- Training and saving of base models
+- Metrics calculation and storage
+
+### 2. **Google Trends Integration**
+- Data collection and processing using SerpAPI in `google_trends/serpapi_trends.ipynb`
+- Filtering, cleaning, and scaling of Google Trends data
+- Creation of merged dataset with original features
+- Retraining of models with enhanced dataset
+
+### 3. **Advanced Feature Engineering and Analysis**
+- Comprehensive analysis in `google_trends/analysis.ipynb`
+- Feature importance analysis
+- Implementation of various techniques(used Granger causality, Cross-Correlation):
+  - Lagged features
+  - Exponentially Weighted Moving Averages (EWMA)
+  - Rolling averages
+- Dataset version comparison:
+  - Used simpler models like to draw comparisons among various versions of the datset
+    -models:
+      - SARIMAX Model
+      - Gradient Boosting Regressor
+      - Random Forest Regressor
+    - versions:
+      - with added lag features, rollingavg+lag, ewma+lag
+      - with added lag features only; NO rollingavg+lag, ewma+lag
+      - with added lag features rollingavg+lag, ewma+lag and orignial features removed for which new versions were added
+      - with added lag features only; NO rollingavg+lag, ewma+lag and orignial features removed for which new versions were added
+      - original no lags
+      - original no lags no google trends terms
+      - original with only google terms lagged
+      - with added lag features, rollingavg+lag, ewma+lag, mosquito_interest dropped (etc.)
+- Final dataset selection: `merged_dataset_lagged.csv` (with added lag features, rollingavg+lag, ewma+lag)
+- Details of simple models' metrics on various dataset versions in `baseline_metrics/baseline_model_metrics.txt`
+
+### 4. **Model Training and Evaluation**
+- Training of four main models on enhanced dataset and metrics calculation
+- Comparison among each model's versions (trained of different datasets)
+   - original
+   - original + search terms
+   - original + search terms + lagged features + ewma features + rollavg features
+- Visualization and analysis in `metrics_visualiser.ipynb`
+   - Overall model comparison (NRMSE, MAE) - boxplots
+   - State-wise Model Comparison (NRMSE & MAE) - barplot
+   - Facet Grid of Metrics Across Models and States
+   - Taylor diagrams for model comparison 
+      -all yielded best model - lagged dataset trained model except LSTM(original dataset model-best)
+- Selection of best model versions
+
+### 5. **Ensemble: BlendedStackingEnsemble**
+- custom ensemble model combining both stacking and blending techniques
+- Base Models: TCN, LSTM, CatBoost, and TFT
+- Meta-Model: LightGBM trained on base model predictions (stacking)
+- Blending: Weighted averaging of base model predictions
+- Final Prediction: final_prediction = blend_ratio * meta_model_prediction + (1 - blend_ratio) * linear_combination
+- Uses Optuna for hyperparameter(base_pred_weights, blend_ratio) tuning
+- Initial implementation (Fixed weights and blend ratio) in `ensemble.py` , `train_ensemble.py`
+- Advanced ensemble (optuna) in `ensemble_new.py` , `train_Ensemble_new.py`
+- Final ensemble model comparison in `metrics_visualiser.ipynb`
 
 ## 🛠️ **Key Features**
 
-- **Dimensionality Reduction** using Principal Component Analysis (PCA) for efficient data handling.
-- **Advanced Machine Learning Models**:  
-  - CatBoost (Gradient Boosting)  
-  - Long Short-Term Memory (LSTM) Networks  
-  - Temporal Convolutional Networks (TCN)  
-  - Temporal Fusion Transformer (TFT)  
-- **Ensemble Learning** to combine model predictions for improved accuracy and generalization.
-- **Future Exploration**: Graph Neural Networks (GNNs) for spatial mobility analysis.
+- **Multi-Modal Data Integration**:
+  - Traditional epidemiological data (case counts, population density)
+  - Climatic data (temperature, humidity, precipitation)
+  - Digital signals (Google Trends, Twitter data)
+  - Geospatial data (spatial distribution patterns)
 
-## 📚 **Data Sources**
+- **Advanced Machine Learning Models**:
+  - **CatBoost**: Gradient boosting algorithm optimized for categorical features
+  - **LSTM (Long Short-Term Memory)**: Deep learning model for time-series forecasting
+  - **TCN (Temporal Convolutional Network)**: Convolution-based model for sequential data
+  - **Ensemble Learning**: Blended stacking approach
 
-The data used in this project comes from a variety of reliable sources:
+- **Data Processing Pipeline**:
+  - Automated data collection and preprocessing
+  - Feature engineering and dimensionality reduction
+  - Time-series analysis and feature extraction
+  - Model training and validation
 
-1. **Geospatial and Climate Data**:  
-   - [Brazilian Institute of Geography and Statistics (IBGE)](https://www.ibge.gov.br)  
-   - [World Meteorological Organization (WMO)](https://public.wmo.int)  
+- **Evaluation Metrics**:
+  - Root Mean Squared Error (RMSE)
+  - Mean Absolute Error (MAE)
+  - R-squared (R²)
+  - Time-series specific metrics
+  - Taylor diagrams for model comparison
 
-2. **Socio-economic Data**:  
-   - [World Bank Open Data](https://data.worldbank.org)
+## 📚 **Data Sources and Processing**
 
-3. **Human Mobility Data**:  
-   - Twitter geotagged data collected using the [Twitter API](https://developer.twitter.com/en/docs/twitter-api)  
-   - Google Trends search data for dengue-related terms, processed using serpapi
+The system integrates data from multiple reliable sources:
+- https://github.com/ESA-PhiLab/ESA-UNICEF_DengueForecastProject/blob/main/code/dataset/Brazil_UF_dengue_monthly.csv
+- Google trends - using SerpAPI (https://trends.google.com/trends/),(https://serpapi.com/)
 
-4. **https://github.com/ESA-PhiLab/ESA-UNICEF_DengueForecastProject** -preprocessing and inspiration.
----
 
-## 🔍 **Methodology**
+## 📌 **Getting Started**
 
-The DengueScope project follows a systematic approach to data integration, model development, and evaluation:
+### Prerequisites
+- Python 3.9 or later
+- Anaconda distribution recommended
+- Internet connection for data collection
 
-### 1. **Data Integration**  
-   - Merge geospatial, climate, socio-economic, and human mobility data to create a unified dataset.
+### Installation
 
-### 2. **Model Development**  
-   Four machine learning models are implemented to predict dengue outbreaks:  
+1. **Clone the Repository**
+```bash
+git clone https://github.com/GAUTAMMANU/proj.git
+cd proj
+```
 
-   - **CatBoost**: A gradient boosting algorithm that efficiently handles categorical data and complex feature interactions.  
-   - **LSTM (Long Short-Term Memory)**: A recurrent neural network (RNN) variant designed to capture temporal dependencies in time-series data.  
-   - **TCN (Temporal Convolutional Network)**: A deep learning model that leverages convolutional layers for sequential data analysis.  
-   - **TFT (Temporal Fusion Transformer)**: An advanced model that combines time-varying features and attention mechanisms for multivariate time-series forecasting.
+2. **Create Virtual Environment**
+```bash
+# Create conda environment
+conda create -n denguescope python=3.9
+conda activate denguescope
 
-### 3. **Evaluation**  
-   - Evaluate each model's performance using key metrics such as:  
-     - **Root Mean Square Error (RMSE)**  
-     - **Mean Absolute Error (MAE)**  
-     - **F1-Score**  
-   - Analyze the impact of integrating Google Trends and Twitter data on model accuracy and generalization.
+# Install dependencies
+pip install -r requirements.txt
+```
 
-### 4. **Ensemble Learning**  
-   - Combine the predictions from all four models using an ensemble approach to improve overall accuracy and robustness.
+3. **Set Up API Keys**
+Create a `.env` file in the root directory with your API keys:
+```
+SERPAPI_KEY1=your_key_1
+SERPAPI_KEY2=your_key_2
+SERPAPI_KEY3=your_key_3
+```
 
-### 5. **Future Exploration**  
-   - Explore the use of **Graph Neural Networks (GNNs)** to analyze spatial relationships in human mobility and dengue spread patterns.  
-   - Incorporate additional mobility data sources for enhanced predictive capabilities.
+### Usage
 
----
-## 📌 **How to Use**
+The main entry points are:
+- `code/train_ensemble_new.py`: For training the ensemble model
+- `code/modelling-Brazil-new2.ipynb`: Without Google Trends integration
+- `code/modelling-Brazil-new3.ipynb`: With Google Trends integration
+- `google_trends/serpapi_trends.ipynb`: Google Trends data processing
+- `google_trends/analysis.ipynb`: Feature analysis and dataset preparation
+- `metrics_visualiser.ipynb`: Model performance visualization
 
-### a. Clone the repository on you desktop
+## 📈 **Results**
 
-This operation can be done in two ways:
+The ensemble approach shows significant improvements over individual models:
+- Better handling of temporal patterns
+- Improved prediction accuracy
+- More robust to data variations
+- Better generalization across different regions
+- Enhanced performance with Google Trends integration
+- Optimal feature combination through lagged features
 
-1. open yout terminal, navigate to you desktop and run 
-   `git https://github.com/ESA-PhiLab/ESA-UNICEF_DengueForecastProject`
-2. download the project on your desktop
+## 🤝 **Contributing**
 
-### b. Create a new virtual environment
-This allows to create a isolated environment and to control the installation of dependancies without affecting your python base installation.
-Before creating a new environment, be sure that the default anaconda enviroment is not active. By opening a terminal, you just need to check if before you user name there is something like ` (base) username: $`. If so run this command first:
+We welcome contributions to enhance the system. Please follow these guidelines:
 
-` conda deactivate base ` or ` conda deactivate <environmentname> `
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-otherwise run directly this command, that creates a new enviroment (change yourenvname with whaterver you prefer)
 
-` conda create -n yourenvname python=x.x anaconda` (3.9 or later)
+## 🙏 **Acknowledgments**
 
-### c. Acticate the virtual environment
+- Thanks to ESA-PhiLab for their preprocessing code inspiration
+- Special thanks to the Brazilian health authorities for providing epidemiological data
+- Gratitude to the open-source community for their contributions to machine learning libraries
 
-To work on the environment you need to activate it first
 
-` conda activate yourenvname `
+## 🔮 **Future Scope**
 
-### d. Install dependancies
+### 1. **Graph Neural Networks (GNN) Integration**
+- **Spatial-Temporal GNNs**:
+  - Implement GraphSAGE or GAT (Graph Attention Networks) for capturing spatial dependencies between regions
+  - Develop custom GNN layers for handling both spatial and temporal features
+  - Integration with existing models for enhanced prediction accuracy
 
-First thing first, you need to move to the project folder
+- **Multi-Scale Graph Learning**:
+  - Hierarchical graph structures for different administrative levels
+  - Cross-scale information propagation
+  - Dynamic graph construction based on disease spread patterns
 
-` cd <path to the project folder> `, for example ` cd Desktop\ESA-UNICEF_DengueForecastProject`
+### 2. **Enhanced Mobility Data Integration**
+- **Real-time Mobility Patterns**:
+  - Integration of anonymized mobile phone data
+  - GPS trajectory analysis
+  - Public transportation flow data
+  - Air travel network analysis
 
-then you need to install pip (python package manager) on the conda environment
+- **Advanced Mobility Features**:
+  - Population movement matrices
+  - Commuting patterns
+  - Seasonal migration patterns
+  - Event-driven mobility changes
 
-` conda install pip `
 
-Then you can install the remaining packages listed in *[requirements.txt](../code/requirements.txt)*
 
-` pip install code\requirements.txt `
+## 📞 **Contact**
 
-main files are - 
-https://github.com/GAUTAMMANU/proj/blob/main/code/modelling-Brazil-new2.ipynb (no-search trends data integration)
-https://github.com/GAUTAMMANU/proj/blob/main/code/modelling-Brazil-new3.ipynb (trends data integrated and used)
+For any questions or issues, please open an issue in the GitHub repository.

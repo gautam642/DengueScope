@@ -1,9 +1,0 @@
-numpy
-matplotlib
-catboost
-scikit-learn
-pandas
-tensorflow
-geopandas
-contextily
-jupyterlab
