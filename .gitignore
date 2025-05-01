@@ -1,0 +1,84 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter
+.ipynb_checkpoints
+
+
+# Environment
+venv/
+env/
+.venv/
+env.bak/
+*.pydevproject
+*.pyc
+.Python
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# # Data
+# *.csv
+# *.xlsx
+# *.xls
+# *.h5
+# *.hdf5
+# *.npy
+# *.npz
+
+# # Model files
+# saved_models/
+# *.h5
+# *.pt
+# *.pth
+# *.model
+# *.weights
+
+# Logs
+*.log
+logs/
+
+# API Keys and Secrets
+*.env
+*.key
+*.secret
+
+
+# Cache and temporary files
+.cache/
+*.cache
+*.tmp
+*.temp
+
+# Visual Studio Code
+.vscode/
+
+
+
+
+# Checkpoint files
+*.chkpt
+*.ckpt
+
+

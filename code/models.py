@@ -19,8 +19,7 @@ from sklearn.model_selection import RandomizedSearchCV
 import itertools
 import warnings
 import pickle
-
-
+from keras.metrics import MeanSquaredError, MeanAbsoluteError
 
 def RMSE(y_true, y_pred):
     return K.sqrt(K.mean(K.square(y_pred - y_true)))
@@ -259,7 +258,15 @@ class RandomForestEnsableNet:
 #         self.model.save(os.path.join(output_path,'LSTM-'+today+'.h5'))
 #         return history
 
-
+def custom_load_model(path):
+    return load_model(
+        path,
+        custom_objects={
+            'mae': MeanAbsoluteError(),
+            'mse': MeanSquaredError(),
+        },
+        compile=True
+    )
 
 
 class LSTMNet:
@@ -293,7 +300,7 @@ class LSTMNet:
         return model
 
     def load(self, path):
-        self.model = load_model(path)
+        self.model = custom_load_model(path)
 
     def train(self, training, validation, output_path):
         es = EarlyStopping(
