@@ -1,4 +1,4 @@
-# 🌍 **DengueScope: A Machine Learning-Based Dengue Prediction System**  
+# 🌍 **DengueScope: A Multi-Modal Machine Learning Framework for Dengue Forecasting**  
 
 [![Python](https://img.shields.io/badge/python-3.x-blue.svg)](https://www.python.org/)  
 
