@@ -212,8 +212,13 @@ def main():
             input_dim = x_train[:, :, 2:].shape[2]  # Sliced feature size
             output_dim = y_train.shape[1]  # Target dimension
             
-            # Load TFT model with correct dimensions
-            tft = TemporalFusionTransformer(input_dim, output_dim, hidden_size=128, num_heads=8)
+            # Load TFT model with correct dimensions and hyperparameters from notebook
+            tft = TemporalFusionTransformer(
+                input_dim=input_dim,
+                output_dim=output_dim,
+                hidden_size=64,  # Match notebook's hyperparameters
+                num_heads=4      # Match notebook's hyperparameters
+            )
             tft.load_state_dict(torch.load(max(tft_models), weights_only=True))
             tft.eval()
             
@@ -337,8 +342,13 @@ def main():
             output_dim = y_train.shape[1]  # Target dimension
             
             
-            # Load TFT model with correct dimensions
-            tft = TemporalFusionTransformer(input_dim, output_dim, hidden_size=128, num_heads=8)
+            # Load TFT model with correct dimensions and hyperparameters from notebook
+            tft = TemporalFusionTransformer(
+                input_dim=input_dim,
+                output_dim=output_dim,
+                hidden_size=64,  # Match notebook's hyperparameters
+                num_heads=4      # Match notebook's hyperparameters
+            )
             tft.load_state_dict(torch.load(max(tft_models), weights_only=True))
             tft.eval()
             

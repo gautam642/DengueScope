@@ -12,7 +12,7 @@ from ensemble_new import BlendedStackingEnsemble
 from models import CatBoostNet, LSTMNet
 from config import DATA_PROCESSING_SETTINGS
 from datasetHandler import datasetHandler
-
+from sklearn.preprocessing import MinMaxScaler
 
 from os.path import join
 import joblib
@@ -111,7 +111,6 @@ def load_dataset_and_models():
     # Process input features
     x_train = np.array(training_dataframe[feature_cols].values)
     x_val = np.array(validation_dataframe[feature_cols].values)
-    
     x_train, y_train, x_val, y_val, train_indices, val_indices = dataset_handler.get_data(
         DATA_PROCESSING_SETTINGS['T LEARNING'],
         DATA_PROCESSING_SETTINGS['T PREDICTION']
@@ -135,10 +134,10 @@ def main():
         (dataset_handler, training_dataframe, validation_dataframe, 
          x_train, y_train, x_val, y_val, 
          train_indices, val_indices) = load_dataset_and_models()
+         
     except Exception as e:
         print(f"Error loading dataset: {e}")
         return
-    
     # Create index mappings for department-level metrics
     y_val_indices_df = pd.DataFrame(val_indices, columns=['actual_index'])
     y_train_indices_df = pd.DataFrame(train_indices, columns=['actual_index'])
@@ -375,25 +374,44 @@ def main():
                 'catboost': catboost_preds_val,
                 'tft': tft_preds_val
             }
-            
             # Generate predictions using the loaded ensemble
             ensemble_predictions = ensemble.predict(base_model_preds)
-            
         except Exception as e:
             print(f"Error during inference: {e}")
             import traceback
             traceback.print_exc()
             return
     
-        try:
-            # Calculate metrics for each department
+        try:    # Calculate metrics for each department
             results = []
             # Invert scaling
             # Load original scaler
             scaler = joblib.load('scaler_dengue.save')
             preds_original = scaler.inverse_transform(ensemble_predictions)
             truth_original = scaler.inverse_transform(y_val)
+
             
+            original_dataframe = pd.read_csv('./dataset/Brazil_UF_dengue_monthly.csv')
+            scaler_month = MinMaxScaler()
+            # Reshape the month values to 2D array for fitting
+            months_2d = original_dataframe['Month'].values.reshape(-1, 1)
+            scaler_month.fit(months_2d)
+            
+            # Create a DataFrame to store predictions with year and dep_id
+            predictions_df = pd.DataFrame({
+                'Year': validation_dataframe.loc[val_indices]['Year'].values,
+                'dep_id': validation_dataframe.loc[val_indices]['dep_id'].values,
+                'Month': np.round(scaler_month.inverse_transform(validation_dataframe.loc[val_indices]['Month'].values.reshape(-1, 1)).flatten()).astype(int),
+                'prediction_all': preds_original[:, 0],
+                'prediction_019': preds_original[:, 1],
+                'actual_all': truth_original[:, 0],
+                'actual_019': truth_original[:, 1]
+            })
+            
+                        # Save predictions to CSV
+            predictions_df.to_csv('raw_ensemble_predictions_Brazil.csv', index=False)
+            print(f"Raw predictions saved to raw_ensemble_predictions_Brazil.csv")
+
             for department_idx, department_name in DEP_NAMES.items():
                 # Filter rows corresponding to the current department for validation
                 department_rows_val = validation_dataframe[validation_dataframe['dep_id'] == department_idx]
@@ -418,8 +436,12 @@ def main():
                 predicted_dengrate_019_val = preds_original[matching_indices_val, 1]
                 
                 # Calculate NRMSE for both DengRate_all and DengRate_019 (validation data)
-                nrmse_dengrate_all_val = root_mean_squared_error(true_dengrate_all_val, predicted_dengrate_all_val) / (true_dengrate_all_val.max() - true_dengrate_all_val.min())
-                nrmse_dengrate_019_val = root_mean_squared_error(true_dengrate_019_val, predicted_dengrate_019_val) / (true_dengrate_019_val.max() - true_dengrate_019_val.min())
+                range_all = true_dengrate_all_val.max() - true_dengrate_all_val.min()
+                range_019 = true_dengrate_019_val.max() - true_dengrate_019_val.min()
+                
+                # Handle division by zero cases
+                nrmse_dengrate_all_val = root_mean_squared_error(true_dengrate_all_val, predicted_dengrate_all_val) / range_all if range_all > 0 else 0
+                nrmse_dengrate_019_val = root_mean_squared_error(true_dengrate_019_val, predicted_dengrate_019_val) / range_019 if range_019 > 0 else 0
                 
                 # Calculate MAE for both DengRate_all and DengRate_019 (validation data)
                 mae_dengrate_all_val = mean_absolute_error(true_dengrate_all_val, predicted_dengrate_all_val)
