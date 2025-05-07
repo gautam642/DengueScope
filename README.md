@@ -12,6 +12,7 @@ Dengue is a major public health concern, especially in tropical regions like Bra
 - **Climatic Data**: Temperature, humidity, precipitation, and other environmental factors.
 - **Socio-economic Data**: Income levels, healthcare access, and population vulnerability.
 - **Google Searches**: Google Trends data
+- **Interactive Maps**: Visual representation of dengue spread across Brazilian states
 
 ## 📚 **Project Workflow**
 
@@ -64,6 +65,7 @@ Dengue is a major public health concern, especially in tropical regions like Bra
    - Facet Grid of Metrics Across Models and States
    - Taylor diagrams for model comparison 
       -all yielded best model - lagged dataset trained model except LSTM(original dataset model-best)
+   - Interactive maps showing dengue spread and predictions & MAE
 - Selection of best model versions
 
 ### 5. **Ensemble: BlendedStackingEnsemble**
@@ -76,6 +78,16 @@ Dengue is a major public health concern, especially in tropical regions like Bra
 - Initial implementation (Fixed weights and blend ratio) in `ensemble.py` , `train_ensemble.py`
 - Advanced ensemble (optuna) in `ensemble_new.py` , `train_Ensemble_new.py`
 - Final ensemble model comparison in `metrics_visualiser.ipynb`
+- State-wise predictions saved in `raw_ensemble_predictions_Brazil.csv`
+
+### 6. **Interactive Maps Visualization**
+- **Geospatial Analysis**:
+  - Choropleth maps showing dengue spread across Brazilian states
+  - Time-series visualization of disease progression (Time slider for temporal analysis)
+  - Comparison of actual vs predicted cases
+  - Hover information for detailed statistics(State-Wise)
+  - Built using Plotly
+
 
 ## 🛠️ **Key Features**
 
@@ -84,6 +96,7 @@ Dengue is a major public health concern, especially in tropical regions like Bra
   - Climatic data (temperature, humidity, precipitation)
   - Digital signals (Google Trends, Twitter data)
   - Geospatial data (spatial distribution patterns)
+  - Interactive maps for visual analysis
 
 - **Advanced Machine Learning Models**:
   - **CatBoost**: Gradient boosting algorithm optimized for categorical features
@@ -147,12 +160,13 @@ SERPAPI_KEY3=your_key_3
 ### Usage
 
 The main entry points are:
-- `code/train_ensemble_new.py`: For training the ensemble model
-- `code/modelling-Brazil-new2.ipynb`: Without Google Trends integration
-- `code/modelling-Brazil-new3.ipynb`: With Google Trends integration
-- `google_trends/serpapi_trends.ipynb`: Google Trends data processing
-- `google_trends/analysis.ipynb`: Feature analysis and dataset preparation
-- `metrics_visualiser.ipynb`: Model performance visualization
+- [`code/train_ensemble_new.py`](code/train_ensemble_new.py): For training the ensemble model
+- [`code/modelling-Brazil-new2.ipynb`](code/modelling-Brazil-new2.ipynb): Without Google Trends integration
+- [`code/modelling-Brazil-new3.ipynb`](code/modelling-Brazil-new3.ipynb): With Google Trends integration
+- [`google_trends/serpapi_trends.ipynb`](google%20trends/serpapi_trends.ipynb): Google Trends data processing
+- [`google_trends/analysis.ipynb`](google%20trends/analysis.ipynb): Feature analysis and dataset preparation
+- [`metrics_visualiser.ipynb`](metrics_visualiser.ipynb): Model performance visualization
+- [`maps_visualiser.ipynb`](maps.ipynb): Interactive maps for dengue spread visualization ([``](dengue_brazil_with_metrics.html))
 
 ## 📈 **Results**
 
