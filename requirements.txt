@@ -28,3 +28,5 @@ tqdm>=4.62.0
 # API Integration
 requests>=2.26.0
 serpapi>=1.0.0
+
+plotly
